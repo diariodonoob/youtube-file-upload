@@ -22,6 +22,7 @@ const Upload = multer({ storage: storage })
 const Base64InArchive = async (req, res, next) => {
     let avatar = req.body.avatar.split(';base64,').pop();
     await writeFile('upload/diariodonoob.png', avatar, {encoding: 'base64'})
+    req.file = { path: 'upload/diariodonoob.png', originalname: 'diariodonoob.png' }
     next()
 }
 
