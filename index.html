@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Diário do noob</title>
+</head>
+
+<body>
+    <div style="margin-top: 15%; padding-left: 35%">
+        <h3> File Upload </h3>
+        <input type="file" />
+        <input type="button" value="Enviar" onclick="upload()" />
+    </div>
+    <script>
+        function upload(){
+            var formData = new FormData()
+            var fileField = document.querySelector("input[type='file']")
+            formData.append('avatar', fileField.files[0])
+            fetch('http://localhost:8080/upload', {
+                method: 'post',
+                body: formData
+            })
+                .then(function (response) { 
+                    return response.json()
+                })
+                .catch(function(err) { 
+                    console.log(err)
+                })
+                .then(function(response) {
+                    console.log(response)
+                })
+        }
+    </script>
+</body>
+
+</html>

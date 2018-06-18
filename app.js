@@ -16,6 +16,7 @@ app.post('/upload', Upload.single('avatar'), ControllerImage)
 
 app.post('/base64', Base64InArchive, ControllerImage)
 
+app.get('/', (req, res) => res.sendfile(path.join(__dirname, 'index.html')))
 
 const port = process.env.PORT || 8080
 
